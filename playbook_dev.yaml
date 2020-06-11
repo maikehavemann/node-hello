@@ -10,6 +10,8 @@
     - name: Build Docker image from Dockerfile
       docker_image:
         name: hello-node
+        repository: localhost:5000/hello-node
+        push: yes
         build:
           path: .
         source: build
