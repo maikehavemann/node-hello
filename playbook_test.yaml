@@ -7,17 +7,10 @@
     - name: install docker-py
       pip: name=docker-py
 
-    - name: Build Docker image from Dockerfile
-      docker_image:
-        name: hello-node
-        build:
-          path: .
-        source: build
-
     - name: Creating the container
       docker_container:
         name: hello-node-test
-        image: hello-node:latest
+        image: localhost:5000/hello-node:latest
         state: present
 
     - name: Running the container
@@ -25,5 +18,5 @@
         name: hello-node-test
         published_ports:
           - "3003:3000"
-        image: hello-node:latest
+        image: localhost:5000/hello-node:latest
         state: started
