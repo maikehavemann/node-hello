@@ -14,8 +14,14 @@
           path: .
         source: build
 
+    - name: Creating the container
+      docker_container:
+        name: hello-node-app
+        image: hello-node:latest
+        state: present
+
     - name: Running the container
       docker_container:
         name: hello-node-app
         image: hello-node:latest
-        state: running
+        state: started
