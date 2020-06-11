@@ -1,15 +1,45 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
+    environment {
+        registry = "maikehavemann/hello-node"
+        registryCredential = 'dockerhub'
+    }
+
+  agent any
+  tools { nodejs "node"}
+
+  stages {
+    stage('Clone code') {
+        steps {
+            git 'http://129.40.23.72:3006/maike/hello-node.git'
         }
     }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
+    stage('Build App') {
+       steps {
+         sh 'npm install'
+       }
     }
+    stage('Unit Test') {
+       steps {
+         sh 'npm test'
+       }
+    }
+    stage('Deploy for test') {
+      steps{
+        // sh "ansible docker_zcx -m ping -i hosts.ini"
+        ansiblePlaybook(inventory: 'hosts.ini', playbook: 'playbook_dev.yaml')
+      }
+    }
+    stage('Integration test') {
+      steps{
+        // sh "ansible docker_zcx -m ping -i hosts.ini"
+        ansiblePlaybook(inventory: 'hosts.ini', playbook: 'integration_test.yaml')
+      }
+    }
+    stage('Deploy for acceptance test') {
+      steps{
+        // sh "ansible docker_zcx -m ping -i hosts.ini"
+        ansiblePlaybook(inventory: 'hosts.ini', playbook: 'playbook_test.yaml')
+      }
+    }
+  }
 }
