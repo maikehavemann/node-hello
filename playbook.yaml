@@ -11,7 +11,7 @@
       docker_image:
         name: hello-node
         build:
-          path: /home/jenkins/docker
+          path: /home/jenkins
         source: build
 
     - name: Running the container
