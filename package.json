@@ -19,16 +19,16 @@
   },
   "homepage": "https://github.com/johnpapa/node-hello#readme",
   "devDependencies": {
-    "jest": "^26.0.1",
+    "jest": "^25.1.0",
     "supertest": "^4.0.2"
   },
   "dependencies": {
     "express": "^4.17.1"
   },
   "jest": {
-   "testEnvironment": "node",
-   "coveragePathIgnorePatterns": [
-     "/node_modules/"
-   ]
- }
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
 }
