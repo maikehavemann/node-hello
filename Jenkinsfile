@@ -15,6 +15,7 @@ pipeline {
     }
     stage('Build App') {
        steps {
+         sh 'npm install -g npm@latest' 
          sh 'npm install'
        }
     }
