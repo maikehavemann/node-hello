@@ -1,6 +1,9 @@
 - name: build and run the docker container
   hosts: localhost
   tasks:
+    - name: Install pip
+      apt: name=python-pip state=present
+
     - name: install docker-py
       pip: name=docker-py
 
