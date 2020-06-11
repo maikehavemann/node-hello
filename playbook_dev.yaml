@@ -16,14 +16,14 @@
 
     - name: Creating the container
       docker_container:
-        name: hello-node-app
+        name: hello-node-dev
         image: hello-node:latest
         state: present
 
     - name: Running the container
       docker_container:
-        name: hello-node-app
+        name: hello-node-dev
         published_ports:
-          - "3003:3000"
+          - "3004:3000"
         image: hello-node:latest
         state: started

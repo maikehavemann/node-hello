@@ -1,0 +1,9 @@
+- name: Simple Integration Test
+  tasks:
+
+  - action: uri url=http://hello-node-app:3004/ return_content=yes
+    register: webpage
+
+  - fail:
+      msg: 'service is not happy'
+    when: "'AWESOME' not in webpage.content"
