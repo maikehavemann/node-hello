@@ -10,11 +10,11 @@
     - name: Build Docker image from Dockerfile
       docker_image:
         name: hello-node
-        path: docker
-        state: build
+        build:
+          path: /home/jenkins/docker
+        source: build
 
     - name: Running the container
       docker_container:
         image: hello-node:latest
-        path: docker
         state: running
