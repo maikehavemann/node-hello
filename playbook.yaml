@@ -1,7 +1,17 @@
-- name: a play that runs entirely on the ansible host
-  hosts: 127.0.0.1
-  connection: local
+- name: build and run the docker container
+  hosts: localhost
   tasks:
-  - name: Display a message
-    debug:
-      msg: "Hello from Ansible in zCX"
+    - name: install docker-py
+      pip: name=docker-py
+
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: hello-node
+        path: docker
+        state: build
+
+    - name: Running the container
+      docker_container:
+        image: hello-node:latest
+        path: docker
+        state: running
