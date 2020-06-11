@@ -16,5 +16,6 @@
 
     - name: Running the container
       docker_container:
+        name: hello-node-app
         image: hello-node:latest
         state: running
