@@ -1,7 +1,7 @@
 - name: Simple Integration Test
   hosts: localhost
   tasks:
-    - action: uri url=http://127.40.23.72:3004/ return_content=yes
+    - action: uri url=http://129.40.23.72:3004/ return_content=yes
       register: webpage
     - fail:
         msg: 'service is not happy'
