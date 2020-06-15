@@ -1,8 +1,5 @@
 pipeline {
-    environment {
-        registry = "maikehavemann/hello-node"
-        registryCredential = 'dockerhub'
-    }
+  agent none
 
   stages {
     stage('Build') {
@@ -18,6 +15,7 @@ pipeline {
           sh 'npm test'
       }
     }
+    
     stage('Deploy') {
       agent{
         node {
