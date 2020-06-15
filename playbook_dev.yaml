@@ -7,15 +7,6 @@
     - name: install docker-py
       pip: name=docker-py
 
-    - name: Build Docker image from Dockerfile
-      docker_image:
-        name: hello-node
-        repository: localhost:5000/hello-node
-        push: yes
-        build:
-          path: .
-        source: build
-
     - name: Creating the container
       docker_container:
         name: hello-node-dev

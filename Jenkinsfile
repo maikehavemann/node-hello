@@ -13,9 +13,11 @@ pipeline {
           sh 'npm install -g npm@latest'
           sh 'npm install'
           sh 'npm test'
+          sh 'docker build -t hello-node:latest .'
+          sh 'docker push localhost:5000/hello-node'
       }
     }
-    
+
     stage('Deploy') {
       agent{
         node {
