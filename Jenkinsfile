@@ -4,8 +4,9 @@ pipeline {
         registryCredential = 'dockerhub'
     }
 
-  agent any
-  tools { nodejs "node"}
+  agent{
+    name 'build agent'
+  }
 
   stages {
     stage('Clone code') {
@@ -15,7 +16,7 @@ pipeline {
     }
     stage('Build App') {
        steps {
-         sh 'npm install -g npm@latest' 
+         sh 'npm install -g npm@latest'
          sh 'npm install'
        }
     }
